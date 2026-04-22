@@ -1,0 +1,68 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+:root {
+    --color-main: #2c3e50;
+    --color-element: #34495e;
+    --color-element-hover: #4a627a;
+}
+
+.rss_left_aside {
+    width: 300px;
+    height: 100%;
+    background-color: var(--color-main);
+    color: white;
+}
+
+.rss_left_aside__burger_button {
+    width: 100%;
+    border: none;
+    background-color: var(--color-element);
+    color: white;
+    padding: 15px;
+}
+
+.rss_left_aside__burger_button:hover {
+    background-color: var(--color-element-hover);
+}
+
+.rss_left_aside__text {
+    text-align: center;
+    padding: 15px;
+}
+
+.rss_left_aside select {
+    width: calc(100% - 8px*2);
+    padding: 8px;
+    margin: 8px;
+}
+
+.rss_left_aside__nav>ul {
+    margin: 0;
+    padding: 0;
+}
+
+.rss_left_aside__nav>ul>li {
+    list-style-type: none;
+}
+
+.rss_left_aside__nav>ul>li>button {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+.rss_left_aside__nav>ul>li>button:hover {
+    background-color: var(--color-element);
+}

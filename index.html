@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="./style.css?nocache=2026-04-22_21-00">
 </head>
 
 <body>
-    <aside>
-        <button onclick="alert('nothing')">☰</button>
-        <div>
+    <aside class="rss_left_aside">
+        <button class="rss_left_aside__burger_button" onclick="alert('nothing')">☰</button>
+        <div class="rss_left_aside__text">
             Period
+        </div>
+        <div>
             <select>
                 <option value="0">January</option>
                 <option value="1">February</option>
@@ -26,13 +29,15 @@
                 <option value="10">November</option>
                 <option value="11">December</option>
             </select>
+        </div>
+        <div>
             <select>
                 <option value="2025">2025</option>
                 <option value="2026">2026</option>
                 <option value="2027">2027</option>
             </select>
         </div>
-        <nav>
+        <nav class="rss_left_aside__nav">
             <ul>
                 <li>
                     <button onclick="alert('nothing')">Projects</button>
