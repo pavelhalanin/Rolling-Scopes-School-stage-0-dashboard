@@ -5,58 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./css/main.css?nocache=2026-04-25_17-30">
-    <link rel="stylesheet" href="./css/left_aside.css?nocache=2026-04-25_17-30">
-    <link rel="stylesheet" href="./css/right_aside.css?nocache=2026-04-25_18-05">
+    <link rel="stylesheet" href="./css/main.css?nocache=2026-04-26_01-15">
+    <link rel="stylesheet" href="./css/left_aside.css?nocache=2026-04-26_01-15">
+    <link rel="stylesheet" href="./css/right_aside.css?nocache=2026-04-26_01-15">
     <link rel="stylesheet" href="./css/input.css?nocache=2026-04-25_17-30">
-    <script src="./js/Employee.js?nocache=2026-04-25_17-30"></script>
-    <script src="./js/Project.js?nocache=2026-04-25_17-55"></script>
+    <script src="./js/Burger.js?nocache=2026-04-26_01-15"></script>
+    <script src="./js/Employee.js?nocache=2026-04-26_01-15"></script>
+    <script src="./js/Project.js?nocache=2026-04-26_01-15"></script>
 </head>
 
 <body>
-    <aside class="rss_left_aside">
-        <button class="rss_left_aside__burger_button" onclick="alert('nothing')">☰</button>
-        <div class="rss_left_aside__text">
-            Period
-        </div>
-        <div>
-            <select>
-                <option value="0">January</option>
-                <option value="1">February</option>
-                <option value="2">March</option>
-                <option value="3">April</option>
-                <option value="4">May</option>
-                <option value="5">June</option>
-                <option value="6">July</option>
-                <option value="7">August</option>
-                <option value="8">September</option>
-                <option value="9">October</option>
-                <option value="10">November</option>
-                <option value="11">December</option>
-            </select>
-        </div>
-        <div>
-            <select>
-                <option value="2025">2025</option>
-                <option value="2026">2026</option>
-                <option value="2027">2027</option>
-            </select>
-        </div>
-        <nav class="rss_left_aside__nav">
-            <ul>
-                <li>
-                    <button onclick="alert('nothing')">Projects</button>
-                </li>
-                <li>
-                    <button onclick="alert('nothing')">Employees</button>
-                </li>
-            </ul>
-        </nav>
-    </aside>
-    <main class="main">
-        <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
-        <button class="btn btn-success" onclick="Project.open()">Add project</button>
-    </main>
+    <div class="body">
+        <aside id="burger_menu" class="burger_menu">
+            <button class="burger_menu__burger_button" onclick="Burger.cancel()">☰</button>
+            <div class="burger_menu__text">
+                Period
+            </div>
+            <div>
+                <select>
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8">September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
+                </select>
+            </div>
+            <div>
+                <select>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                </select>
+            </div>
+            <nav class="burger_menu__nav">
+                <ul>
+                    <li>
+                        <button onclick="alert('nothing')">Projects</button>
+                    </li>
+                    <li>
+                        <button onclick="alert('nothing')">Employees</button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <button class="burger_menu__burger_open_button btn btn-success" onclick="Burger.open()">
+            → Open menu
+        </button>
+        <main class="main">
+            <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+            <button class="btn btn-success" onclick="Project.open()">Add project</button>
+        </main>
+    </div>
     <aside id="right_form__employee" class="right_form__wrapper employee_add_form--close">
         <form action="">
             <h2>Add New Employee</h2>

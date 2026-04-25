@@ -1,6 +1,6 @@
-class Project {
-  static id_form_wrapper = "right_form__project";
-  static class_close = "project_add_form--close";
+class Burger {
+  static id_form_wrapper = "burger_menu";
+  static class_close = "burger_menu--close";
 
   static cancel() {
     const DIV = document.getElementById(this.id_form_wrapper);
@@ -14,9 +14,6 @@ class Project {
   }
 
   static open() {
-    Project.cancel();
-    Employee.cancel();
-
     const DIV = document.getElementById(this.id_form_wrapper);
 
     if (!DIV) {

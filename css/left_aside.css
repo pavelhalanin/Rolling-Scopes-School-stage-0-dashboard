@@ -1,15 +1,46 @@
-.rss_left_aside {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: min(30vw, 300px);
+.body {
+    display: flex;
     height: 100%;
-    background-color: var(--color-main);
-    color: white;
 }
 
-.rss_left_aside__burger_button {
+.main {
+    height: calc(100% - 48px - 8px - 8px);
+    padding: calc(48px + 8px) 8px 8px 8px;
+}
+
+.burger_menu {
+    z-index: 3;
+    max-width: calc(300px);
+    width: min(30vw, 300px);
+    height: 100%;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, .4);
+    overflow-y: auto;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    transition: width ease 0.5s;
+}
+
+.burger_menu__burger_open_button {
+    z-index: 2;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    height: 40px;
+    max-width: calc(300px - 8px*2);
+    width: min(30vw, 300px);
+}
+
+.burger_menu--close {
+    width: 0;
+    overflow: hidden;
+}
+
+.burger_menu--close * {
+    overflow: hidden;
+}
+
+.burger_menu__burger_button {
     width: 100%;
     border: none;
     background-color: var(--color-element);
@@ -17,31 +48,31 @@
     padding: 15px;
 }
 
-.rss_left_aside__burger_button:hover {
+.burger_menu__burger_button:hover {
     background-color: var(--color-element-hover);
 }
 
-.rss_left_aside__text {
+.burger_menu__text {
     text-align: center;
     padding: 15px;
 }
 
-.rss_left_aside select {
+.burger_menu select {
     width: calc(100% - 8px*2);
     padding: 8px;
     margin: 8px;
 }
 
-.rss_left_aside__nav>ul {
+.burger_menu__nav>ul {
     margin: 0;
     padding: 0;
 }
 
-.rss_left_aside__nav>ul>li {
+.burger_menu__nav>ul>li {
     list-style-type: none;
 }
 
-.rss_left_aside__nav>ul>li>button {
+.burger_menu__nav>ul>li>button {
     width: 100%;
     border: none;
     background-color: transparent;
@@ -50,6 +81,6 @@
     text-align: left;
 }
 
-.rss_left_aside__nav>ul>li>button:hover {
+.burger_menu__nav>ul>li>button:hover {
     background-color: var(--color-element);
 }

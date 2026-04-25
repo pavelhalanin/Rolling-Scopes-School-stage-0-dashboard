@@ -15,12 +15,31 @@ body {
     --color-element-hover: #4a627a;
 
     --color-primary: #007bff;
+    --color-primary-hover: #0069d9;
     --color-secondary: #6c757d;
+    --color-secondary-hover: #5a6268;
     --color-success: #28a745;
+    --color-success-hover: #218838;
     --color-danger: #dc3545;
+    --color-danger-hover: #c82333;
     --color-warning: #ffc107;
+    --color-warning-hover: #e0a800;
     --color-info: #17a2b8;
-    --color-light: #fff;
+    --color-info-hover: #138496;
+    --color-light: #f8f9fa;
+    --color-light-hover: #e2e6ea;
+    --color-dark: #343a40;
+    --color-dark-hover: #23272b;
+    --color-link: #007bff;
+    --color-link-hover: #0056b3;
+}
+
+a {
+    color: var(--color-link);
+}
+
+a:hover {
+    color: var(--color-link-hover);
 }
 
 .btn {
@@ -28,6 +47,7 @@ body {
     background-color: transparent;
     padding: .375rem .75rem;
     border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .btn.btn-success {
@@ -36,12 +56,16 @@ body {
     color: var(--color-light);
 }
 
+.btn.btn-success:hover {
+    background-color: var(--color-success-hover);
+}
+
 .btn.btn-secondary {
     background-color: var(--color-secondary);
     border-color: var(--color-secondary);
     color: var(--color-light);
 }
 
-.main {
-    padding: 0 min(30vw, 300px);
+.btn.btn-secondary:hover {
+    background-color: var(--color-secondary-hover);
 }
