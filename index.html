@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./css/main.css?nocache=2026-04-26_03-30">
+    <link rel="stylesheet" href="./css/main.css?nocache=2026-04-26_05-10">
     <link rel="stylesheet" href="./css/burger_footer.css?nocache=2026-04-26_01-35">
     <link rel="stylesheet" href="./css/left_aside.css?nocache=2026-04-26_03-30">
     <link rel="stylesheet" href="./css/right_aside.css?nocache=2026-04-26_01-15">
     <link rel="stylesheet" href="./css/input.css?nocache=2026-04-26_04-15">
     <script src="./js/Burger.js?nocache=2026-04-26_01-15"></script>
-    <script src="./js/Employee.js?nocache=2026-04-26_04-15"></script>
-    <script src="./js/Project.js?nocache=2026-04-26_03-30"></script>
+    <script src="./js/Employee.js?nocache=2026-04-26_05-10"></script>
+    <script src="./js/Project.js?nocache=2026-04-26_05-10"></script>
     <script src="./js/Period.js?nocache=2026-04-26_03-30"></script>
-    <script src="./js/Storage.js?nocache=2026-04-26_03-30"></script>
+    <script src="./js/Storage.js?nocache=2026-04-26_05-10"></script>
 </head>
 
 <body>
@@ -86,48 +86,8 @@
             → Open menu
         </button>
         <main class="main">
-            <section id="employee_section" class="d-none">
-                <h2>Employees</h2>
-
-                <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
-
-                <table class="table bordered">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Surname</th>
-                            <th>Age</th>
-                            <th>Position</th>
-                            <th>Salary</th>
-                            <th>Estimated Payment</th>
-                            <th>Project</th>
-                            <th>Projected Income</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </section>
-            <section id="project_section" class="d-none">
-                <h2>Projects</h2>
-
-                <button class="btn btn-success" onclick="Project.open()">Add project</button>
-
-                <table class="table bordered">
-                    <thead>
-                        <tr>
-                            <th>Company Name</th>
-                            <th>Project Name</th>
-                            <th>Budjet</th>
-                            <th>Employee Capacity</th>
-                            <th>Employees</th>
-                            <th>Estimated Incode</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </section>
+            <section id="employee_section" class="d-none"></section>
+            <section id="project_section" class="d-none"></section>
         </main>
     </div>
     <aside id="right_form__employee" class="right_form__wrapper employee_add_form--close">
@@ -158,13 +118,16 @@
             <div class="input__wrapper">
                 <label for="employee_add_form__birthday">Birthday: *</label>
 
-                <input id="employee_add_form__birthday" name="birthday" oninput="Employee.onChangeInput(); Employee.onChangeBirthDay();" type="date"
+                <input id="employee_add_form__birthday" name="birthday"
+                    oninput="Employee.onChangeInput(); Employee.onChangeBirthDay();" type="date"
                     title="Date of birth is required" required>
 
                 <div class="input__error_message">
                     Date of birth is required
                 </div>
-                <input class="input--hide" type="number" min="18" pattern="[\d]*" data-input-name="age" oninput="Employee.onChangeBirthDay();">
+
+                <input class="input--hide" type="number" min="18" pattern="[\d]*" data-input-name="age"
+                    oninput="Employee.onChangeBirthDay();">
 
                 <div class="input__error_message">
                     Age is not 18+

@@ -52,6 +52,55 @@ class Employee {
     }
 
     DIV.classList.remove("d-none");
+
+    const ARRAY = Storage.getEmployees();
+
+    DIV.innerHTML = /* html */ `
+      <h2>Employees</h2>
+
+      <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+
+      <table class="table bordered">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Age</th>
+              <th>Position</th>
+              <th>Salary</th>
+              <th>Estimated Payment</th>
+              <th>Project</th>
+              <th>Projected Income</th>
+              <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ARRAY.map((e) => {
+            const BIRTHDAY = e.birthday;
+            const AGE = this.calculateAge(new Date(BIRTHDAY));
+            const BIRTHDAY_TITLE = [`Дата рождения: ${BIRTHDAY}`]
+              .join("")
+              .replace(/"/g, `'`);
+
+            return /* html */ `
+              <tr>
+                <td>${e.name}</td>
+                <td>${e.surname}</td>
+                <td title="${BIRTHDAY_TITLE}">${AGE}</td>
+                <td>${e.position}</td>
+                <td>${e.salary}</td>
+                <td>?</td>
+                <td>?</td>
+                <td>?</td>
+                <td>
+                  <button class="btn btn-danger" onclick="alert('nothing')">Delete</button>
+                </td>
+              </tr>
+            `;
+          }).join("")}
+        </tbody>
+      </table>
+    `;
   }
 
   static onChangeInput() {
@@ -111,6 +160,7 @@ class Employee {
       }
 
       Storage.addEmployee_byData(OBJECT);
+      this.renderContent();
     } catch (exception) {
       console.error(exception);
       alert(exception);

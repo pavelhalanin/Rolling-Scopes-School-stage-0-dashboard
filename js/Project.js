@@ -52,6 +52,45 @@ class Project {
     }
 
     DIV.classList.remove("d-none");
+
+    const ARRAY = Storage.getProjects();
+
+    DIV.innerHTML = /* html */ `
+      <h2>Projects</h2>
+
+      <button class="btn btn-success" onclick="Project.open()">Add project</button>
+
+      <table class="table bordered">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Project Name</th>
+            <th>Budget</th>
+            <th>Employee Capacity</th>
+            <th>Employees</th>
+            <th>Estimated Incode</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ARRAY.map((e) => {
+            return /* html */ `
+              <tr>
+                <td>${e.companyName}</td>
+                <td>${e.projectName}</td>
+                <td>${e.budget}</td>
+                <td>${e.employeeCapacity}</td>
+                <td>?</td>
+                <td>?</td>
+                <td>
+                  <button class="btn btn-danger" onclick="alert('nothing')">Delete</button>
+                </td>
+              </tr>
+            `;
+          }).join("")}
+        </tbody>
+      </table>
+    `;
   }
 
   static onChangeInput() {
@@ -111,6 +150,7 @@ class Project {
       }
 
       Storage.addProject_byData(OBJECT);
+      this.renderContent();
     } catch (exception) {
       console.error(exception);
       alert(exception);
