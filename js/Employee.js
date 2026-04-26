@@ -75,6 +75,15 @@ class Employee {
           </tr>
         </thead>
         <tbody>
+          ${
+            ARRAY.length !== 0
+              ? ""
+              : /* html */ `
+                <tr>
+                  <td colspan="9" align="center">No data on period</td>
+                </tr>
+                `
+          }
           ${ARRAY.map((e) => {
             const BIRTHDAY = e.dob;
             const AGE = this.calculateAge(new Date(BIRTHDAY));

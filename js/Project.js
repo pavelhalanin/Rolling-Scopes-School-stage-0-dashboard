@@ -73,6 +73,15 @@ class Project {
           </tr>
         </thead>
         <tbody>
+          ${
+            ARRAY.length !== 0
+              ? ''
+              : /* html */ `
+                <tr>
+                  <td colspan="7" align="center">No data on period</td>
+                </tr>
+                `
+          }
           ${ARRAY.map((e) => {
             return /* html */ `
               <tr>
