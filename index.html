@@ -5,53 +5,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./css/main.css?nocache=2026-04-26_01-35">
+    <link rel="stylesheet" href="./css/main.css?nocache=2026-04-26_03-30">
     <link rel="stylesheet" href="./css/burger_footer.css?nocache=2026-04-26_01-35">
-    <link rel="stylesheet" href="./css/left_aside.css?nocache=2026-04-26_01-50">
+    <link rel="stylesheet" href="./css/left_aside.css?nocache=2026-04-26_03-30">
     <link rel="stylesheet" href="./css/right_aside.css?nocache=2026-04-26_01-15">
     <link rel="stylesheet" href="./css/input.css?nocache=2026-04-25_17-30">
     <script src="./js/Burger.js?nocache=2026-04-26_01-15"></script>
-    <script src="./js/Employee.js?nocache=2026-04-26_01-15"></script>
-    <script src="./js/Project.js?nocache=2026-04-26_01-15"></script>
+    <script src="./js/Employee.js?nocache=2026-04-26_03-30"></script>
+    <script src="./js/Project.js?nocache=2026-04-26_03-30"></script>
+    <script src="./js/Period.js?nocache=2026-04-26_03-30"></script>
+    <script src="./js/Storage.js?nocache=2026-04-26_03-30"></script>
 </head>
 
 <body>
     <div class="body">
         <aside id="burger_menu" class="burger_menu">
             <button class="burger_menu__burger_button" onclick="Burger.cancel()">☰</button>
-            <div class="burger_menu__text">
-                Period
+
+            <div class="input__wrapper">
+                <label for="period">Period: *</label>
+
+                <input id="period" name="period" type="month" title="You are not choose year and month" required>
+
+                <div class="input__error_message">
+                    You are not choose year and month
+                </div>
             </div>
-            <div>
-                <select>
-                    <option value="0">January</option>
-                    <option value="1">February</option>
-                    <option value="2">March</option>
-                    <option value="3">April</option>
-                    <option value="4">May</option>
-                    <option value="5">June</option>
-                    <option value="6">July</option>
-                    <option value="7">August</option>
-                    <option value="8">September</option>
-                    <option value="9">October</option>
-                    <option value="10">November</option>
-                    <option value="11">December</option>
-                </select>
-            </div>
-            <div>
-                <select>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                </select>
-            </div>
+            <script>
+                Period.setCurrentPeriod();
+            </script>
             <nav class="burger_menu__nav">
                 <ul>
                     <li>
-                        <button onclick="alert('nothing')">Projects</button>
+                        <button onclick="Project.renderContent()">Projects</button>
                     </li>
                     <li>
-                        <button onclick="alert('nothing')">Employees</button>
+                        <button onclick="Employee.renderContent()">Employees</button>
                     </li>
                 </ul>
             </nav>
@@ -97,8 +86,48 @@
             → Open menu
         </button>
         <main class="main">
-            <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
-            <button class="btn btn-success" onclick="Project.open()">Add project</button>
+            <section id="employee_section" class="d-none">
+                <h2>Employees</h2>
+
+                <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+
+                <table class="table bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Age</th>
+                            <th>Position</th>
+                            <th>Salary</th>
+                            <th>Estimated Payment</th>
+                            <th>Project</th>
+                            <th>Projected Income</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+            <section id="project_section" class="d-none">
+                <h2>Projects</h2>
+
+                <button class="btn btn-success" onclick="Project.open()">Add project</button>
+
+                <table class="table bordered">
+                    <thead>
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Project Name</th>
+                            <th>Budjet</th>
+                            <th>Employee Capacity</th>
+                            <th>Employees</th>
+                            <th>Estimated Incode</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
         </main>
     </div>
     <aside id="right_form__employee" class="right_form__wrapper employee_add_form--close">
@@ -107,7 +136,8 @@
             <div class="input__wrapper">
                 <label for="employee_add_form__name">Name: *</label>
 
-                <input id="employee_add_form__name" type="text" pattern="[A-Za-z\s]+" minlength="3"
+                <input id="employee_add_form__name" name="name" oninput="Employee.onChangeInput()" type="text"
+                    pattern="[A-Za-z\s]+" minlength="3"
                     title="Name must be at least 3 characters and contain only letters" required>
 
                 <div class="input__error_message">
@@ -117,7 +147,8 @@
             <div class="input__wrapper">
                 <label for="employee_add_form__surname">Surname: *</label>
 
-                <input id="employee_add_form__surname" type="text" pattern="[A-Za-z\s]+" minlength="3"
+                <input id="employee_add_form__surname" name="surname" oninput="Employee.onChangeInput()" type="text"
+                    pattern="[A-Za-z\s]+" minlength="3"
                     title="Surname must be at least 3 characters and contain only letters" required>
 
                 <div class="input__error_message">
@@ -127,7 +158,8 @@
             <div class="input__wrapper">
                 <label for="employee_add_form__birthday">Birthday: *</label>
 
-                <input id="employee_add_form__birthday" type="date" title="Date of birth is required" required>
+                <input id="employee_add_form__birthday" name="birthday" oninput="Employee.onChangeInput()" type="date"
+                    title="Date of birth is required" required>
 
                 <div class="input__error_message">
                     Date of birth is required
@@ -135,7 +167,7 @@
             </div>
             <div class="input__wrapper">
                 <label for="employee_add_form__position">Position: *</label>
-                <select id="employee_add_form__position" required>
+                <select id="employee_add_form__position" name="position" oninput="Employee.onChangeInput()" required>
                     <option value="">Select position</option>
                     <option value="Junior">Junior</option>
                     <option value="Middle">Middle</option>
@@ -149,15 +181,17 @@
                 </div>
             </div>
             <div class="input__wrapper">
-                <label for="">Salary: *</label>
+                <label for="employee_add_form__salary">Salary: *</label>
 
-                <input type="number" min="0.01" step="0.01" title="Salary must be greater than 0" required>
+                <input id="employee_add_form__salary" name="salary" oninput="Employee.onChangeInput()" type="number"
+                    min="0.01" step="0.01" title="Salary must be greater than 0" required>
 
                 <div class="input__error_message">
                     Salary must be greater than 0
                 </div>
             </div>
-            <button class="btn btn-success">Add</button>
+            <button class="btn btn-success" type="submit" onclick="event.preventDefault(); Employee.add()"
+                disabled>Add</button>
             <button class="btn btn-secondary" onclick="event.preventDefault(); Employee.cancel()">Cancel</button>
         </form>
     </aside>
@@ -165,9 +199,10 @@
         <form action="">
             <h2>Add New Project</h2>
             <div class="input__wrapper">
-                <label for="employee_add_form__project_name">Project Name: *</label>
+                <label for="project_add_form__project_name">Project Name: *</label>
 
-                <input id="employee_add_form__project_name" type="text" minlength="3" pattern="[A-Za-z0-9\s]+"
+                <input id="project_add_form__project_name" name="projectName" oninput="Project.onChangeInput()"
+                    type="text" minlength="3" pattern="[A-Za-z0-9\s]+"
                     title="Project name must be at least 3 characters" required>
 
                 <div class="input__error_message">
@@ -175,9 +210,10 @@
                 </div>
             </div>
             <div class="input__wrapper">
-                <label for="employee_add_form__company_name">Company Name: *</label>
+                <label for="project_add_form__company_name">Company Name: *</label>
 
-                <input id="employee_add_form__company_name" type="text" minlength="2" pattern="[A-Za-z0-9\s]+"
+                <input id="project_add_form__company_name" name="companyName" oninput="Project.onChangeInput()"
+                    type="text" minlength="2" pattern="[A-Za-z0-9\s]+"
                     title="Company name must be at least 2 characters" required>
 
                 <div class="input__error_message">
@@ -185,25 +221,27 @@
                 </div>
             </div>
             <div class="input__wrapper">
-                <label for="employee_add_form__budget">Budget: *</label>
+                <label for="project_add_form__budget">Budget: *</label>
 
-                <input id="employee_add_form__budget" type="number" min="0.01" step="0.01"
-                    title="Budget must be greater than 0" required>
+                <input id="project_add_form__budget" name="budget" oninput="Project.onChangeInput()" type="number"
+                    min="0.01" step="0.01" title="Budget must be greater than 0" required>
 
                 <div class="input__error_message">
                     Budget must be greater than 0
                 </div>
             </div>
             <div class="input__wrapper">
-                <label for="">Employee Capacity: *</label>
+                <label for="project_add_form__capacity">Employee Capacity: *</label>
 
-                <input type="number" min="1" step="1" title="Employee capacity must be at least 1" required>
+                <input id="project_add_form__capacity" name="employeeCapacity" oninput="Project.onChangeInput()"
+                    type="number" min="1" step="1" title="Employee capacity must be at least 1" required>
 
                 <div class="input__error_message">
                     Employee capacity must be at least 1
                 </div>
             </div>
-            <button class="btn btn-success">Add</button>
+            <button class="btn btn-success" type="submit" onclick="event.preventDefault(); Project.add()"
+                disabled>Add</button>
             <button class="btn btn-secondary" onclick="event.preventDefault(); Project.cancel()">Cancel</button>
         </form>
     </aside>

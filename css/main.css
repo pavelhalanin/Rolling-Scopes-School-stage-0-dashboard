@@ -49,6 +49,13 @@ a:hover {
     border-radius: .25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.btn[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: .65;
 }
 
 .btn.btn-primary {
@@ -79,4 +86,16 @@ a:hover {
 
 .btn.btn-secondary:hover {
     background-color: var(--color-secondary-hover);
+}
+
+.d-none {
+    display: none;
+}
+
+.table {
+    width: 100%;
+}
+
+.table.bordered th {
+    border: 1px solid #dee2e6;
 }
