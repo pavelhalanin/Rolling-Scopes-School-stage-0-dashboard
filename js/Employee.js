@@ -16,6 +16,7 @@ class Employee {
   }
 
   static open() {
+    Assigments.cancel();
     Project.cancel();
     Employee.cancel();
 
@@ -102,6 +103,7 @@ class Employee {
                 <td>?</td>
                 <td>?</td>
                 <td>
+                  <button class="btn btn-primary" onclick="Assigments.setFormAdd_byEmployeeId('${e.id}'); Assigments.open()">Assigments</button>
                   <button class="btn btn-danger" onclick="alert('nothing')">Delete</button>
                 </td>
               </tr>

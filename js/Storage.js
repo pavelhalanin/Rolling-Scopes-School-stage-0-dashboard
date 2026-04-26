@@ -96,4 +96,36 @@ class Storage {
 
     return object[PERIOD]["employees"];
   }
+
+  static addAssigment_byDataAndEmployeeId(data, employeeId) {
+    const PERIOD = Period.getPeriod();
+
+    console.log("Assigment added", PERIOD, data, employeeId);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["employees"].length; i++) {
+      if (object[PERIOD]["employees"][i].id === employeeId) {
+        if (!("assigments" in object[PERIOD]["employees"][i])) {
+          object[PERIOD]["employees"][i]["assigments"] = [];
+        }
+
+        object[PERIOD]["employees"][i]["assigments"].push(data);
+        localStorage.setItem(this.localStorageKey, JSON.stringify(object));
+        return;
+      }
+    }
+  }
 }
