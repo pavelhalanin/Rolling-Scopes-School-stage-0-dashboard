@@ -124,6 +124,10 @@ a:hover {
     margin: 8px 0;
 }
 
+.table thead.bg-dark th {
+    border-color: var(--color-dark);
+}
+
 .table.bordered th,
 .table.bordered td {
     border: 1px solid #dee2e6;
