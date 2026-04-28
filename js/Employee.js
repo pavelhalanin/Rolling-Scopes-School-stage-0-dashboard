@@ -112,6 +112,7 @@ class Employee {
                 </td>
                 <td>?</td>
                 <td>
+                  <button class="btn btn-warning" onclick="Availability.open_byEmployeeId('${e.id}')">Availability</button>
                   <button class="btn btn-primary" onclick="EmployeeAddAssignment.open_byEmployeeId('${e.id}')">Assignments</button>
                   <button class="btn btn-danger" onclick="${this.name}.removeEmployee_byId('${e.id}')">Delete</button>
                 </td>
