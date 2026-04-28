@@ -118,11 +118,11 @@ class Storage {
 
     for (let i = 0; i < object[PERIOD]["employees"].length; i++) {
       if (object[PERIOD]["employees"][i].id === employeeId) {
-        if (!("assigments" in object[PERIOD]["employees"][i])) {
-          object[PERIOD]["employees"][i]["assigments"] = [];
+        if (!("assignments" in object[PERIOD]["employees"][i])) {
+          object[PERIOD]["employees"][i]["assignments"] = [];
         }
 
-        object[PERIOD]["employees"][i]["assigments"].push(data);
+        object[PERIOD]["employees"][i]["assignments"].push(data);
         localStorage.setItem(this.localStorageKey, JSON.stringify(object));
         return;
       }
@@ -148,11 +148,11 @@ class Storage {
 
     for (let i = 0; i < object[PERIOD]["employees"].length; i += 1) {
       if (object[PERIOD]["employees"][i].id == employeeId) {
-        if (!("assigments" in object[PERIOD]["employees"][i])) {
-          object[PERIOD]["employees"][i]["assigments"] = [];
+        if (!("assignments" in object[PERIOD]["employees"][i])) {
+          object[PERIOD]["employees"][i]["assignments"] = [];
         }
 
-        return object[PERIOD]["employees"][i]["assigments"];
+        return object[PERIOD]["employees"][i]["assignments"];
       }
     }
 

@@ -92,7 +92,7 @@ class Employee {
               .replace(/"/g, `'`);
 
             const ASSIGMENT_LENGTH =
-              "assigments" in e ? e.assigments.length : 0;
+              "assignments" in e ? e.assignments.length : 0;
             const PAYMENT = ASSIGMENT_LENGTH > 0 ? e.salary : e.salary / 2;
 
             return /* html */ `
@@ -104,7 +104,7 @@ class Employee {
                 <td>${e.salary}</td>
                 <td>${PAYMENT}</td>
                 <td>
-                  <button class="btn btn-primary" onclick="EmployeeGetAssigments.open_byEmployeeId('${e.id}')">Show assigments (${ASSIGMENT_LENGTH})</button>  
+                  ${ASSIGMENT_LENGTH == 0 ? "-" : `<button class="btn btn-primary" onclick="EmployeeGetAssigments.open_byEmployeeId('${e.id}')">Show assigments (${ASSIGMENT_LENGTH})</button>`}
                 </td>
                 <td>?</td>
                 <td>
