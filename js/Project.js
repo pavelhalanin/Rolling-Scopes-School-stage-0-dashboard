@@ -58,7 +58,10 @@ class Project {
     DIV.innerHTML = /* html */ `
       <header>
         <h2>Projects</h2>
-        <button class="btn btn-success" onclick="Project.open()">Add project</button>
+        <div>
+          <button class="btn btn-success" onclick="Project.open()">Add project</button>
+          <button class="btn btn-success" onclick="SeedData.open()">Seed Data</button>
+        </div>
       </header>
 
       <table class="table bordered">

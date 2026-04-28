@@ -58,7 +58,10 @@ class Employee {
     DIV.innerHTML = /* html */ `
       <header>
         <h2>Employees</h2>
-        <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+        <div>
+          <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+          <button class="btn btn-success" onclick="SeedData.open()">Seed Data</button>
+        </div>
       </header>
 
       <table class="table bordered">
