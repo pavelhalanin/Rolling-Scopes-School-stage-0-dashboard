@@ -92,7 +92,7 @@ class Project {
                 <td>?</td>
                 <td>?</td>
                 <td>
-                  <button class="btn btn-danger" onclick="alert('nothing')">Delete</button>
+                  <button class="btn btn-danger" onclick="${this.name}.removeProject_byId('${e.id}')">Delete</button>
                 </td>
               </tr>
             `;
@@ -164,5 +164,14 @@ class Project {
       console.error(exception);
       alert(exception);
     }
+  }
+
+  static removeProject_byId(id) {
+    if (!confirm(`Вы уверены, что ходите удалить продукт id = ${id}`)) {
+      return;
+    }
+
+    Storage.removeProject_byId(id);
+    this.renderContent();
   }
 }

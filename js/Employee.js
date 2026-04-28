@@ -109,7 +109,7 @@ class Employee {
                 <td>?</td>
                 <td>
                   <button class="btn btn-primary" onclick="EmployeeAddAssigment.open_byEmployeeId('${e.id}')">Assigments</button>
-                  <button class="btn btn-danger" onclick="alert('nothing')">Delete</button>
+                  <button class="btn btn-danger" onclick="${this.name}.removeEmployee_byId('${e.id}')">Delete</button>
                 </td>
               </tr>
             `;
@@ -238,5 +238,14 @@ class Employee {
     }
 
     INPUT_AGE.value = AGE;
+  }
+
+  static removeEmployee_byId(id) {
+    if (!confirm(`Вы уверены, что ходите удалить сотрудника id = ${id}`)) {
+      return;
+    }
+
+    Storage.removeEmployee_byId(id);
+    this.renderContent();
   }
 }

@@ -67,7 +67,9 @@ class EmployeeGetAssigments {
                                         <td>?</td>
                                         <td>?</td>
                                         <td>?</td>
-                                        <td>?</td>
+                                        <td>
+                                          <button class="btn btn-danger" onclick="${this.name}.removeAssignment_byEmployeeId_byProjectId('${employeeId}', '${e.projectId}')">Unassign</button>
+                                        </td>
                                     </tr>
                                 `;
                             }).join("")}
@@ -82,5 +84,18 @@ class EmployeeGetAssigments {
       console.error(exception);
       alert(exception);
     }
+  }
+
+  static removeAssignment_byEmployeeId_byProjectId(employeeId, projectId) {
+    if (
+      !confirm(
+        `Вы уверены, что ходите удалить связь сотрудник-продукт id = ${employeeId}-${projectId}`,
+      )
+    ) {
+      return;
+    }
+
+    Storage.removeAssignment_byEmployeeId_byProjectId(employeeId, projectId);
+    Employee.renderContent();
   }
 }

@@ -51,6 +51,46 @@ class Storage {
     return object[PERIOD]["projects"];
   }
 
+  static removeProject_byId(id) {
+    const PERIOD = Period.getPeriod();
+
+    console.log("Employee remove", PERIOD, id);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("projects" in object[PERIOD])) {
+      object[PERIOD]["projects"] = [];
+    }
+
+    object[PERIOD]["projects"] = object[PERIOD]["projects"].filter(
+      (e) => e.id != id,
+    );
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["employees"].length; i += 1) {
+      if (!("assignments" in object[PERIOD]["employees"][i])) {
+        object[PERIOD]["employees"][i]["assignments"] = [];
+      }
+
+      object[PERIOD]["employees"][i]["assignments"] = object[PERIOD][
+        "employees"
+      ][i]["assignments"].filter((e) => e.projectId != id);
+    }
+
+    localStorage.setItem(this.localStorageKey, JSON.stringify(object));
+  }
+
   static addEmployee_byData(data) {
     const PERIOD = Period.getPeriod();
 
@@ -95,6 +135,32 @@ class Storage {
     }
 
     return object[PERIOD]["employees"];
+  }
+
+  static removeEmployee_byId(id) {
+    const PERIOD = Period.getPeriod();
+
+    console.log("Employee remove", PERIOD, id);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    object[PERIOD]["employees"] = object[PERIOD]["employees"].filter(
+      (e) => e.id != id,
+    );
+
+    localStorage.setItem(this.localStorageKey, JSON.stringify(object));
   }
 
   static addAssigment_byDataAndEmployeeId(data, employeeId) {
@@ -157,6 +223,41 @@ class Storage {
     }
 
     return [];
+  }
+
+  static removeAssignment_byEmployeeId_byProjectId(employeeId, projectId) {
+    const PERIOD = Period.getPeriod();
+
+    console.log("Assignmen remove", PERIOD, employeeId, projectId);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["employees"].length; i += 1) {
+      if (object[PERIOD]["employees"][i]["id"] == employeeId) {
+        if (!("assignments" in object[PERIOD])) {
+          object[PERIOD]["employees"][i]["assignments"] = [];
+        }
+
+        console.log(object[PERIOD]["assignments"]);
+        object[PERIOD]["employees"][i]["assignments"] = object[PERIOD][
+          "employees"
+        ][i]["assignments"].filter((e) => e.projectId != projectId);
+      }
+    }
+
+    localStorage.setItem(this.localStorageKey, JSON.stringify(object));
   }
 
   static init() {
