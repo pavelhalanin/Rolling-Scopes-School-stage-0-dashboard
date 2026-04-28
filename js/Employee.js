@@ -56,9 +56,10 @@ class Employee {
     const ARRAY = Storage.getEmployees();
 
     DIV.innerHTML = /* html */ `
-      <h2>Employees</h2>
-
-      <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+      <header>
+        <h2>Employees</h2>
+        <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+      </header>
 
       <table class="table bordered">
         <thead class="bg-dark">

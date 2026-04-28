@@ -56,9 +56,10 @@ class Project {
     const ARRAY = Storage.getProjects();
 
     DIV.innerHTML = /* html */ `
-      <h2>Projects</h2>
-
-      <button class="btn btn-success" onclick="Project.open()">Add project</button>
+      <header>
+        <h2>Projects</h2>
+        <button class="btn btn-success" onclick="Project.open()">Add project</button>
+      </header>
 
       <table class="table bordered">
         <thead class="bg-dark">

@@ -10,6 +10,18 @@
     overflow-x: auto;
 }
 
+.main>section>header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.main>section>header>h2 {
+    margin: 0;
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: 8px;
+    color: var(--color-dark);
+}
+
 .burger_menu {
     z-index: 3;
     max-width: calc(300px);
