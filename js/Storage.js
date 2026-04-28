@@ -163,10 +163,10 @@ class Storage {
     localStorage.setItem(this.localStorageKey, JSON.stringify(object));
   }
 
-  static addAssigment_byDataAndEmployeeId(data, employeeId) {
+  static addAssignment_byDataAndEmployeeId(data, employeeId) {
     const PERIOD = Period.getPeriod();
 
-    console.log("Assigment added", PERIOD, data, employeeId);
+    console.log("Assignment added", PERIOD, data, employeeId);
 
     const STRING_JSON = localStorage.getItem(this.localStorageKey);
     let object = JSON.parse(STRING_JSON);
@@ -195,7 +195,7 @@ class Storage {
     }
   }
 
-  static getEmployeesAssigments_byEmployeeId(employeeId) {
+  static getEmployeesAssignments_byEmployeeId(employeeId) {
     const PERIOD = Period.getPeriod();
 
     const STRING_JSON = localStorage.getItem(this.localStorageKey);

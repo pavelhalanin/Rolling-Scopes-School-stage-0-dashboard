@@ -104,11 +104,11 @@ class Employee {
                 <td>${e.salary}</td>
                 <td>${PAYMENT}</td>
                 <td>
-                  ${ASSIGMENT_LENGTH == 0 ? "-" : `<button class="btn btn-primary" onclick="EmployeeGetAssigments.open_byEmployeeId('${e.id}')">Show assigments (${ASSIGMENT_LENGTH})</button>`}
+                  ${ASSIGMENT_LENGTH == 0 ? "-" : `<button class="btn btn-primary" onclick="EmployeeGetAssignments.open_byEmployeeId('${e.id}')">Show assignments (${ASSIGMENT_LENGTH})</button>`}
                 </td>
                 <td>?</td>
                 <td>
-                  <button class="btn btn-primary" onclick="EmployeeAddAssigment.open_byEmployeeId('${e.id}')">Assigments</button>
+                  <button class="btn btn-primary" onclick="EmployeeAddAssignment.open_byEmployeeId('${e.id}')">Assignments</button>
                   <button class="btn btn-danger" onclick="${this.name}.removeEmployee_byId('${e.id}')">Delete</button>
                 </td>
               </tr>

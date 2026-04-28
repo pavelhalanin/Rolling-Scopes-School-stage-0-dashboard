@@ -1,4 +1,4 @@
-class EmployeeGetAssigments {
+class EmployeeGetAssignments {
   static id_modal = "employees_assignts_table_on_modal";
 
   static close() {
@@ -24,11 +24,11 @@ class EmployeeGetAssigments {
       DIALOG.classList.add("modal_wrapper");
 
       const EMPLOYEE_ASSIGMENTS =
-        Storage.getEmployeesAssigments_byEmployeeId(employeeId);
+        Storage.getEmployeesAssignments_byEmployeeId(employeeId);
 
       DIALOG.innerHTML = /* html */ `
                 <header class="bg-dark">
-                    <h2>Assigments</h2>
+                    <h2>Assignments</h2>
                     <button class="btn btn-danger" onclick="${this.name}.close()">x</button>
                 </header>
                 <div>
@@ -99,3 +99,4 @@ class EmployeeGetAssigments {
     Employee.renderContent();
   }
 }
+

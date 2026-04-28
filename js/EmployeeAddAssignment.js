@@ -1,4 +1,4 @@
-class EmployeeAddAssigment {
+class EmployeeAddAssignment {
   static id_modal = "employees_assignt_add_modal";
 
   static close() {
@@ -28,7 +28,7 @@ class EmployeeAddAssigment {
 
       DIALOG.innerHTML = /* html */ `
                 <header class="bg-dark">
-                    <h2>Assigments</h2>
+                    <h2>Assignments</h2>
                     <button class="btn btn-danger" onclick="${this.name}.close()">x</button>
                 </header>
                 <div>
@@ -37,10 +37,10 @@ class EmployeeAddAssigment {
                     </div>
 
                     <form action="">
-                        <h2>Assigments</h2>
+                        <h2>Assignments</h2>
                         <div class="input__wrapper">
-                            <label for="assigments_add_form__employee_id">Employee: *</label>
-                            <select id="assigments_add_form__employee_id" name="employeeId" oninput="EmployeeAddAssigment.onChangeInput()" required>
+                            <label for="assignments_add_form__employee_id">Employee: *</label>
+                            <select id="assignments_add_form__employee_id" name="employeeId" oninput="EmployeeAddAssignment.onChangeInput()" required>
                                 <option value="">Select employee</option>
                                 ${EMPLOYEES.map((e) => {
                                   const TITLE = [
@@ -64,8 +64,8 @@ class EmployeeAddAssigment {
                             </div>
                         </div>
                         <div class="input__wrapper">
-                            <label for="assigments_add_form__project_id">Project: *</label>
-                            <select id="assigments_add_form__project_id" name="projectId" oninput="EmployeeAddAssigment.onChangeInput()" required>
+                            <label for="assignments_add_form__project_id">Project: *</label>
+                            <select id="assignments_add_form__project_id" name="projectId" oninput="EmployeeAddAssignment.onChangeInput()" required>
                                 <option value="">Select project</option>
                                 ${PROJECTS.map((e) => {
                                   const TITLE = [
@@ -89,9 +89,9 @@ class EmployeeAddAssigment {
                             </div>
                         </div>
                         <div class="input__wrapper">
-                            <label for="assigments_add_form__capacity">Capacity Allocation: *</label>
+                            <label for="assignments_add_form__capacity">Capacity Allocation: *</label>
 
-                            <input id="assigments_add_form__capacity" name="capacity" oninput="EmployeeAddAssigment.onChangeInput()"
+                            <input id="assignments_add_form__capacity" name="capacity" oninput="EmployeeAddAssignment.onChangeInput()"
                                 type="number" min="0" max="1.5" step="0.1" title="Adjust capacity (0.0 - 1.5)" required>
 
                             <div class="input__error_message">
@@ -99,9 +99,9 @@ class EmployeeAddAssigment {
                             </div>
                         </div>
                         <div class="input__wrapper">
-                            <label for="assigments_add_form__fit">Project Fit: *</label>
+                            <label for="assignments_add_form__fit">Project Fit: *</label>
 
-                            <input id="assigments_add_form__fit" name="fit" oninput="EmployeeAddAssigment.onChangeInput()"
+                            <input id="assignments_add_form__fit" name="fit" oninput="EmployeeAddAssignment.onChangeInput()"
                                 type="number" min="0" max="1" step="0.1" title="Project fit coefficient (0.0 - 1.0). Effective capacity = capacity × fit" required>
 
                             <div class="input__error_message">
@@ -189,7 +189,7 @@ class EmployeeAddAssigment {
       const EMPLOYEE_ID = +OBJECT.employeeId;
       delete OBJECT.employeeId;
 
-      Storage.addAssigment_byDataAndEmployeeId(OBJECT, EMPLOYEE_ID);
+      Storage.addAssignment_byDataAndEmployeeId(OBJECT, EMPLOYEE_ID);
       this.close();
       Employee.renderContent();
     } catch (exception) {
