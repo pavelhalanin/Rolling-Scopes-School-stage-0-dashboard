@@ -26,7 +26,7 @@ class SeedData {
       const SEED_DATA_ARRAY = Storage.getSeedData();
 
       DIALOG.innerHTML = /* html */ `
-        <header class="bg-dark">
+        <header>
           <h2>Seed</h2>
           <button class="btn btn-danger" onclick="${this.name}.close()">x</button>
         </header>

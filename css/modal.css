@@ -2,6 +2,7 @@
     padding: 0;
     border: none;
     border-radius: 8px;
+    background-color: transparent;
 }
 
 .modal_wrapper::backdrop {
@@ -14,10 +15,16 @@
     padding: 8px;
 }
 
+.modal_wrapper>header {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+}
+
 .modal_wrapper>header>h2 {
     margin: 0;
 }
 
 .modal_wrapper>div {
     padding: 8px;
+    background-color: var(--color-light);
 }

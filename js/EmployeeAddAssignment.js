@@ -27,7 +27,7 @@ class EmployeeAddAssignment {
       const PROJECTS = Storage.getProjects();
 
       DIALOG.innerHTML = /* html */ `
-                <header class="bg-dark">
+                <header>
                     <h2>Assignments</h2>
                     <button class="btn btn-danger" onclick="${this.name}.close()">x</button>
                 </header>
