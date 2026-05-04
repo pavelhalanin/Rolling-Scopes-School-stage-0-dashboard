@@ -110,6 +110,45 @@ class EmployeeGetAssignments {
                                 .join("\n")
                                 .replace(/"/g, `'`);
 
+                              const usedEffectiveCapacity =
+                                Storage.getSumUsedEffectiveCapacity_forProjectId(
+                                  e.projectId,
+                                );
+                              const PROJECT = Storage.getProject_byId(
+                                e.projectId,
+                              );
+                              const capacityForRevenue = Math.max(
+                                PROJECT.employeeCapacity,
+                                usedEffectiveCapacity,
+                              );
+
+                              const budget = PROJECT.budget;
+
+                              const revenuePerEffectiveCapacity =
+                                budget / capacityForRevenue;
+
+                              const revenue = Number(
+                                revenuePerEffectiveCapacity,
+                              ).toFixed(2);
+
+                              const employeeRevenue = Number(
+                                revenuePerEffectiveCapacity * EFFECTIVE,
+                              ).toFixed(2);
+
+                              const TITLE_REVUNUE = [
+                                `usedEffectiveCapacity = sum of all employees' effective capacities`,
+                                `usedEffectiveCapacity = ${usedEffectiveCapacity}`,
+                                `capacityForRevenue = max(projectCapacity, usedEffectiveCapacity)`,
+                                `capacityForRevenue = max(${e.capacity}, ${usedEffectiveCapacity})`,
+                                `capacityForRevenue = ${capacityForRevenue}`,
+                                `revenuePerEffectiveCapacity = budget / capacityForRevenue`,
+                                `revenuePerEffectiveCapacity = ${budget} / ${capacityForRevenue}`,
+                                `employeeRevenue = revenuePerEffectiveCapacity × employeeEffectiveCapacity`,
+                                `employeeRevenue = ${revenuePerEffectiveCapacity} × ${EFFECTIVE}`,
+                              ]
+                                .join("\n")
+                                .replace(/"/g, `'`);
+
                               return `
                                     <tr>
                                         <td>${PROJECT_NAME}</td>
@@ -117,9 +156,9 @@ class EmployeeGetAssignments {
                                         <td>${FIT}</td>
                                         <td title="${TITLE_VACATION}">${VACATION_DAYS.length} days</td>
                                         <td title="${TITLE_EFFECTIVE}">${EFFECTIVE}</td>
-                                        <td>?</td>
+                                        <td title="${TITLE_REVUNUE}">${revenue}</td>
                                         <td title="${TITLE_EMPLOYEE_COST}">${EMPLOYEE_COST}</td>
-                                        <td>?</td>
+                                        <td title="${TITLE_REVUNUE}">${employeeRevenue}</td>
                                         <td>
                                           <button class="btn btn-danger" onclick="${this.name}.removeAssignment_byEmployeeId_byProjectId('${employeeId}', '${e.projectId}')">Unassign</button>
                                         </td>

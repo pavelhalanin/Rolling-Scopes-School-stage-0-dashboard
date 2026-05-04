@@ -51,6 +51,33 @@ class Storage {
     return object[PERIOD]["projects"];
   }
 
+  static getProject_byId(projectId) {
+    const PROJECT_ID = Number(projectId);
+    const PERIOD = Period.getPeriod();
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("projects" in object[PERIOD])) {
+      object[PERIOD]["projects"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["projects"].length; i += 1) {
+      if (object[PERIOD]["projects"][i].id === PROJECT_ID) {
+        return object[PERIOD]["projects"][i];
+      }
+    }
+
+    return {};
+  }
+
   static getProjectName_byProjectId(projectId) {
     const PROJECT_ID = Number(projectId);
     const PERIOD = Period.getPeriod();
@@ -1029,5 +1056,49 @@ class Storage {
     element.click();
     document.body.removeChild(element);
     URL.revokeObjectURL(element.href); // Освобождаем память
+  }
+
+  static getSumUsedEffectiveCapacity_forProjectId(projectId) {
+    const PROJECT_ID = Number(projectId);
+    const PERIOD = Period.getPeriod();
+
+    console.log("getSumUsedEffectiveCapacity_forProjectId", PERIOD, PROJECT_ID);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    let sumUsedEffectiveCapacity = 0;
+    for (let i = 0; i < object[PERIOD]["employees"].length; i++) {
+      if (!("assignments" in object[PERIOD]["employees"][i])) {
+        object[PERIOD]["employees"][i]["assignments"] = [];
+      }
+
+      for (
+        let j = 0;
+        j < object[PERIOD]["employees"][i]["assignments"].length;
+        j += 1
+      ) {
+        if (
+          object[PERIOD]["employees"][i]["assignments"][j].projectId ===
+          PROJECT_ID
+        ) {
+          sumUsedEffectiveCapacity +=
+            object[PERIOD]["employees"][i]["assignments"][j].capacity;
+        }
+      }
+    }
+
+    return sumUsedEffectiveCapacity;
   }
 }
