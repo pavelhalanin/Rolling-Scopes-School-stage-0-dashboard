@@ -57,12 +57,13 @@ class EmployeeGetAssignments {
                               const EFFECTIVE = Number(
                                 e.capacity * e.fit,
                               ).toFixed(3);
+                              const VACATION_DAYS = Storage.getVacationDays_byEmployeeId(employeeId);
                               return `
                                     <tr>
                                         <td></td>
                                         <td>${CAPACITY}</td>
                                         <td>${FIT}</td>
-                                        <td>?</td>
+                                        <td>${VACATION_DAYS.length} days</td>
                                         <td>${EFFECTIVE}</td>
                                         <td>?</td>
                                         <td>?</td>
