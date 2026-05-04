@@ -52,6 +52,8 @@ class EmployeeGetAssignments {
                         </thead>
                         <tbody>
                             ${EMPLOYEE_ASSIGMENTS.map((e) => {
+                              const PROJECT_NAME =
+                                Storage.getProjectName_byProjectId(e.projectId);
                               const CAPACITY = Number(e.capacity).toFixed(2);
                               const FIT = Number(e.fit).toFixed(2);
 
@@ -97,7 +99,7 @@ class EmployeeGetAssignments {
 
                               return `
                                     <tr>
-                                        <td></td>
+                                        <td>${PROJECT_NAME}</td>
                                         <td>${CAPACITY}</td>
                                         <td>${FIT}</td>
                                         <td title="${TITLE_VACATION}">${VACATION_DAYS.length} days</td>

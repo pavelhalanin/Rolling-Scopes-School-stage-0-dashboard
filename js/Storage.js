@@ -51,6 +51,31 @@ class Storage {
     return object[PERIOD]["projects"];
   }
 
+  static getProjectName_byProjectId(projectId) {
+    const PROJECT_ID = Number(projectId);
+    const PERIOD = Period.getPeriod();
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("projects" in object[PERIOD])) {
+      object[PERIOD]["projects"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["projects"].length; i += 1) {
+      if (object[PERIOD]["projects"][i].id === PROJECT_ID) {
+        return object[PERIOD]["projects"][i].projectName;
+      }
+    }
+  }
+
   static removeProject_byId(id) {
     const PERIOD = Period.getPeriod();
 
