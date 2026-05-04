@@ -23,8 +23,9 @@ class EmployeeGetAssignments {
       DIALOG.setAttribute("id", `${this.id_modal}`);
       DIALOG.classList.add("modal_wrapper");
 
-      const EMPLOYEE_ASSIGMENTS =
-        Storage.getEmployeesAssignments_byEmployeeId(employeeId);
+      const EMPLOYEE = Storage.getEmployee_byId(employeeId);
+
+      const EMPLOYEE_ASSIGMENTS = EMPLOYEE.assignments || [];
 
       DIALOG.innerHTML = /* html */ `
                 <header>
@@ -97,6 +98,18 @@ class EmployeeGetAssignments {
                                 .join("\n")
                                 .replace(/"/g, `'`);
 
+                              const EMPLOYEE_COST = Number(
+                                EMPLOYEE.salary * Math.max(0.5, e.capacity),
+                              ).toFixed(2);
+
+                              const TITLE_EMPLOYEE_COST = [
+                                "employeeCost = salary × max(0.5, assignedCapacity)",
+                                `employeeCost = ${EMPLOYEE.salary} * max(0.5 ; ${e.capacity}) =`,
+                                `= ${EMPLOYEE_COST}`,
+                              ]
+                                .join("\n")
+                                .replace(/"/g, `'`);
+
                               return `
                                     <tr>
                                         <td>${PROJECT_NAME}</td>
@@ -105,7 +118,7 @@ class EmployeeGetAssignments {
                                         <td title="${TITLE_VACATION}">${VACATION_DAYS.length} days</td>
                                         <td title="${TITLE_EFFECTIVE}">${EFFECTIVE}</td>
                                         <td>?</td>
-                                        <td>?</td>
+                                        <td title="${TITLE_EMPLOYEE_COST}">${EMPLOYEE_COST}</td>
                                         <td>?</td>
                                         <td>
                                           <button class="btn btn-danger" onclick="${this.name}.removeAssignment_byEmployeeId_byProjectId('${employeeId}', '${e.projectId}')">Unassign</button>

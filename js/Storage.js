@@ -162,6 +162,35 @@ class Storage {
     return object[PERIOD]["employees"];
   }
 
+  static getEmployee_byId(id) {
+    const EMPLOYEE_ID = Number(id);
+    const PERIOD = Period.getPeriod();
+
+    console.log("Employee remove", PERIOD, EMPLOYEE_ID);
+
+    const STRING_JSON = localStorage.getItem(this.localStorageKey);
+    let object = JSON.parse(STRING_JSON);
+    if (object === null) {
+      object = {};
+    }
+
+    if (!(PERIOD in object)) {
+      object[PERIOD] = {};
+    }
+
+    if (!("employees" in object[PERIOD])) {
+      object[PERIOD]["employees"] = [];
+    }
+
+    for (let i = 0; i < object[PERIOD]["employees"].length; i += 1) {
+      if (object[PERIOD]["employees"][i].id === EMPLOYEE_ID) {
+        return object[PERIOD]["employees"][i];
+      }
+    }
+
+    return {};
+  }
+
   static removeEmployee_byId(id) {
     const PERIOD = Period.getPeriod();
 
@@ -282,36 +311,6 @@ class Storage {
         return;
       }
     }
-  }
-
-  static getEmployeesAssignments_byEmployeeId(employeeId) {
-    const PERIOD = Period.getPeriod();
-
-    const STRING_JSON = localStorage.getItem(this.localStorageKey);
-    let object = JSON.parse(STRING_JSON);
-    if (object === null) {
-      object = {};
-    }
-
-    if (!(PERIOD in object)) {
-      object[PERIOD] = {};
-    }
-
-    if (!("employees" in object[PERIOD])) {
-      object[PERIOD]["employees"] = [];
-    }
-
-    for (let i = 0; i < object[PERIOD]["employees"].length; i += 1) {
-      if (object[PERIOD]["employees"][i].id == employeeId) {
-        if (!("assignments" in object[PERIOD]["employees"][i])) {
-          object[PERIOD]["employees"][i]["assignments"] = [];
-        }
-
-        return object[PERIOD]["employees"][i]["assignments"];
-      }
-    }
-
-    return [];
   }
 
   static removeAssignment_byEmployeeId_byProjectId(employeeId, projectId) {
