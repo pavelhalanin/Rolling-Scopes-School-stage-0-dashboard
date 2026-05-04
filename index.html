@@ -109,7 +109,7 @@
     <script src="./js/Project.js?nocache=2026-04-28_07-50"></script>
     <script src="./js/EmployeeAddAssignment.js?nocache=2026-04-29_04-10"></script>
     <script src="./js/EmployeeGetAssignments.js?nocache=2026-04-29_04-10"></script>
-    <script src="./js/Period.js?nocache=2026-04-28_05-05"></script>
+    <script src="./js/Period.js?nocache=2026-05-04_08-17"></script>
     <script src="./js/Storage.js?nocache=2026-04-28_07-50"></script>
     <script src="./js/SeedData.js?nocache=2026-04-29_04-10"></script>
     <script src="./js/Availability.js?nocache=2026-04-29_04-10"></script>
@@ -129,15 +129,12 @@
             <div class="input__wrapper">
                 <label for="period">Period: *</label>
 
-                <input id="period" name="period" type="month" title="You are not choose year and month" required>
+                <input id="period" name="period" type="month" title="You are not choose year and month" required onchange="Employee.renderContent()">
 
                 <div class="input__error_message">
                     You are not choose year and month
                 </div>
             </div>
-            <script>
-                Period.setCurrentPeriod();
-            </script>
             <nav class="burger_menu__nav">
                 <ul>
                     <li>
@@ -311,6 +308,9 @@
             <button class="btn btn-secondary" onclick="event.preventDefault(); Project.cancel()">Cancel</button>
         </form>
     </aside>
+    <script>
+        Period.setCurrentPeriod();
+    </script>
 </body>
 
 </html>

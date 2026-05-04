@@ -14,6 +14,7 @@ class Period {
     }
 
     INPUT.value = `${YYYY}-${MM}`;
+    Employee.renderContent();
   }
 
   static getPeriod() {
