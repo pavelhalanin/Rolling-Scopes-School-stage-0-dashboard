@@ -187,6 +187,7 @@ class Availability {
         OBJECT.employeeId,
         VACATION_DAYS,
       );
+      this.close();
     } catch (exception) {
       alert(exception);
     }

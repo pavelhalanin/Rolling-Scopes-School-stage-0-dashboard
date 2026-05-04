@@ -410,6 +410,7 @@ class Storage {
 
     localStorage.setItem(this.localStorageKey, JSON.stringify(object));
     Employee.renderContent();
+    SeedData.close();
   }
 
   static init() {
