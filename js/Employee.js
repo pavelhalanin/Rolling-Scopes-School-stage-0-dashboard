@@ -69,13 +69,24 @@ class Employee {
           <tr>
               <th>Name</th>
               <th>Surname</th>
-              <th>Age</th>
+              <th rowspan="2">Age</th>
               <th>Position</th>
-              <th>Salary</th>
-              <th>Estimated Payment</th>
-              <th>Project</th>
-              <th>Projected Income</th>
-              <th>Actions</th>
+              <th rowspan="2">Salary</th>
+              <th rowspan="2">Estimated Payment</th>
+              <th rowspan="2">Project</th>
+              <th rowspan="2">Projected Income</th>
+              <th rowspan="2">Actions</th>
+          </tr>
+          <tr>
+            <th class="th_filter">
+              <input type="search" data-col="0" oninput="Employee.filter()">
+            </th>
+            <th class="th_filter">
+              <input type="search" data-col="1" oninput="Employee.filter()">
+            </th>
+            <th class="th_filter">
+              <input type="search" data-col="3" oninput="Employee.filter()">
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -252,5 +263,56 @@ class Employee {
 
     Storage.removeEmployee_byId(id);
     this.renderContent();
+  }
+
+  static filter() {
+    try {
+      console.log("filter");
+      const DIV = document.getElementById(this.id_content);
+      if (!DIV) {
+        alert(`Узел не найден: ${this.id_content}`);
+        return;
+      }
+
+      const TABLE = DIV.querySelector("table");
+      if (!TABLE) {
+        alert(`Узел не найден: ${this.id_content} table`);
+        return;
+      }
+
+      const THEAD = TABLE.querySelector("thead");
+      if (!THEAD) {
+        alert(`Узел не найден: ${this.id_content} table thead`);
+        return;
+      }
+
+      const INPUT_ARRAY = THEAD.querySelectorAll("input");
+
+      const TBODY = TABLE.querySelector("tbody");
+      if (!TBODY) {
+        alert(`Узел не найден: ${this.id_content} table tbody`);
+        return;
+      }
+
+      const TR_ARRAY = TBODY.querySelectorAll("tr");
+      for (let i = 0; i < TR_ARRAY.length; i++) {
+        TR_ARRAY[i].style.display = "";
+      }
+
+      for (let i = 0; i < INPUT_ARRAY.length; i++) {
+        const VALUE = `${INPUT_ARRAY[i].value}`.toLowerCase();
+        const COLUMN_ID = INPUT_ARRAY[i].getAttribute("data-col");
+
+        for (let j = 0; j < TR_ARRAY.length; j++) {
+          const TD_ARRAY = TR_ARRAY[j].querySelectorAll("td");
+          const TEXT = `${TD_ARRAY[COLUMN_ID].innerHTML}`.toLowerCase();
+          if (!TEXT.includes(VALUE)) {
+            TR_ARRAY[j].style.display = "none";
+          }
+        }
+      }
+    } catch (exception) {
+      alert(exception);
+    }
   }
 }
