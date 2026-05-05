@@ -27,6 +27,9 @@ body {
     --color-info-alert-bg: #cff4fc;
     --color-info-alert-border: #b6effb;
     --color-info-alert-color: #055160;
+    --color-success-alert-bg: #badbcc;
+    --color-success-alert-border: #d1e7dd;
+    --color-success-alert-color: #0f5132;
     --color-light: #f8f9fa;
     --color-light-hover: #f9fafb;
     --color-dark: #212529;
@@ -58,6 +61,12 @@ a:hover {
     background-color: var(--color-info-alert-bg);
     border-color: var(--color-info-alert-border);
     color: var(--color-info-alert-color);
+}
+
+.alert.alert-success {
+    background-color: var(--color-success-alert-bg);
+    border-color: var(--color-success-alert-border);
+    color: var(--color-success-alert-color);
 }
 
 .bg-warning {

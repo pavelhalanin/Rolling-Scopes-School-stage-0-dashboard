@@ -72,6 +72,7 @@ class Availability {
                     name="vacationDays[${e.date}]"
                     value="${e.date}"
                     id="${ID_CHECKBOX}"
+                    onchange="Availability.changeWorkingDays_byEmployeeId('${employeeId}')"
                     ${isCheked ? "checked" : ""}
                   >
                   <label ${e.isCurrentPeriod ? `for="${ID_CHECKBOX}"` : ""}>${e.date}</label>
@@ -82,14 +83,41 @@ class Availability {
           <div align="right">
             <button class="btn btn-success" onclick="${this.name}.addVacationDays()">Set vacation</button>
           </div>
+          <div id="working_days" class="alert alert-success" align="center">
+            
+          </div>
         </div>
       `;
       document.body.appendChild(DIALOG);
+
+      this.changeWorkingDays_byEmployeeId(employeeId);
 
       DIALOG.showModal();
     } catch (exception) {
       console.error(exception);
       alert(exception);
+    }
+  }
+
+  static changeWorkingDays_byEmployeeId(employeeId) {
+    try {
+      console.log(`changeWorkingDays_byEmployeeId(${employeeId})`);
+      const workingDays = VacationCoefficient.getWorkingDays();
+      const vacationWorkingDays =
+        VacationCoefficient.getVacationWorkingDays_byEmployeeId(employeeId);
+
+      const DIV = document.getElementById("working_days");
+      if (!DIV) {
+        console.error(`Не найден узел: #working_days`);
+        return;
+      }
+
+      const RESULT = `${workingDays - vacationWorkingDays}/${workingDays}`;
+      console.log(`changeWorkingDays_byEmployeeId(${employeeId}) => ${RESULT}`);
+
+      DIV.innerHTML = `Working Days: ${workingDays - vacationWorkingDays}/${workingDays} days`;
+    } catch (exception) {
+      console.error(exception);
     }
   }
 
@@ -187,7 +215,7 @@ class Availability {
         OBJECT.employeeId,
         VACATION_DAYS,
       );
-      this.close();
+      Availability.changeWorkingDays_byEmployeeId(OBJECT.employeeId);
     } catch (exception) {
       alert(exception);
     }
