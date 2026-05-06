@@ -19,8 +19,27 @@ class Burger {
     if (!DIV) {
       console.error(`Node not found #${this.id_form_wrapper}`);
       alert(`Node not found #${this.id_form_wrapper}`);
+      return;
     }
 
     DIV.classList.remove(this.class_close);
+  }
+
+  static selectButton_byId(id) {
+    const DIV = document.getElementById("menu_buttons");
+    if (!DIV) {
+      console.error(`Node not found #menu_buttons`);
+      alert(`Node not found #menu_buttons`);
+      return;
+    }
+
+    const BUTTONS = DIV.querySelectorAll("button");
+
+    for (let i = 0; i < BUTTONS.length; i++) {
+      BUTTONS[i].classList.remove("selected");
+      if (BUTTONS[i].getAttribute("data-id") == id) {
+        BUTTONS[i].classList.add("selected");
+      }
+    }
   }
 }

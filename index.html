@@ -104,9 +104,9 @@
     <link rel="stylesheet" href="./css/input.css?nocache=2026-05-05_18-13">
     <link rel="stylesheet" href="./css/modal.css?nocache=2026-04-29_03-25">
     <link rel="stylesheet" href="./css/availability.css?nocache=2026-04-29_02-55">
-    <script src="./js/Burger.js?nocache=2026-04-28_05-05"></script>
-    <script src="./js/Employee.js?nocache=2026-05-06_08-00"></script>
-    <script src="./js/Project.js?nocache=2026-05-06_08-00"></script>
+    <script src="./js/Burger.js?nocache=2026-05-06_08-28"></script>
+    <script src="./js/Employee.js?nocache=2026-05-06_08-28"></script>
+    <script src="./js/Project.js?nocache=2026-05-06_08-28"></script>
     <script src="./js/EmployeeAddAssignment.js?nocache=2026-04-29_04-10"></script>
     <script src="./js/EmployeeGetAssignments.js?nocache=2026-05-04_16-49"></script>
     <script src="./js/Period.js?nocache=2026-05-04_12-12"></script>
@@ -137,13 +137,13 @@
                     You are not choose year and month
                 </div>
             </div>
-            <nav class="burger_menu__nav">
+            <nav class="burger_menu__nav" id="menu_buttons">
                 <ul>
                     <li>
-                        <button onclick="Project.renderContent()">Projects</button>
+                        <button data-id="Projects" onclick="Project.renderContent()">Projects</button>
                     </li>
                     <li>
-                        <button onclick="Employee.renderContent()">Employees</button>
+                        <button data-id="Employees" onclick="Employee.renderContent()">Employees</button>
                     </li>
                 </ul>
             </nav>

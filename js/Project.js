@@ -114,6 +114,8 @@ class Project {
         </tbody>
       </table>
     `;
+
+    Burger.selectButton_byId("Projects");
   }
 
   static onChangeInput() {

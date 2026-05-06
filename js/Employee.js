@@ -134,6 +134,8 @@ class Employee {
         </tbody>
       </table>
     `;
+
+    Burger.selectButton_byId("Employees");
   }
 
   static onChangeInput() {

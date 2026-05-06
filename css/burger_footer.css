@@ -26,3 +26,11 @@
     padding-top: 16px;
     text-align: center;
 }
+
+.burger_menu__nav button {
+    border-left: 4px solid transparent !important;
+}
+
+.burger_menu__nav button.selected {
+    border-left: 4px solid var(--color-success) !important;
+}
