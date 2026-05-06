@@ -103,8 +103,8 @@ class Availability {
     try {
       console.log(`changeWorkingDays_byEmployeeId(${employeeId})`);
       const workingDays = VacationCoefficient.getWorkingDays();
-      const vacationWorkingDays =
-        VacationCoefficient.getVacationWorkingDays_byEmployeeId(employeeId);
+      // const vacationWorkingDays = VacationCoefficient.getVacationWorkingDays_byEmployeeId(employeeId);
+      const vacationWorkingDays = this.getSelectedVacations();
 
       const DIV = document.getElementById("working_days");
       if (!DIV) {
@@ -216,6 +216,48 @@ class Availability {
         VACATION_DAYS,
       );
       Availability.changeWorkingDays_byEmployeeId(OBJECT.employeeId);
+    } catch (exception) {
+      alert(exception);
+    }
+  }
+
+  static getSelectedVacations() {
+    try {
+      const DIV = document.getElementById(this.id_modal);
+      if (!DIV) {
+        console.error(`Node is not found: #${this.id_modal}`);
+        return;
+      }
+
+      const FORM = DIV.querySelector("form");
+      if (!FORM) {
+        console.error(`Node is not found: #${this.id_modal} form`);
+        return;
+      }
+
+      const DIV_ARRAY = FORM.querySelectorAll(
+        `div[data-is-current-period='true']`,
+      );
+
+      let count = 0;
+
+      for (let i = 0; i < DIV_ARRAY.length; i++) {
+        const DAY_INDEX = DIV_ARRAY[i].getAttribute("data-day-index");
+
+        if (DAY_INDEX == 0 || DAY_INDEX == 6) {
+          continue;
+        }
+
+        const INPUT = DIV_ARRAY[i].querySelector(`input[type='checkbox']`);
+        if (!INPUT) {
+          continue;
+        }
+        if (INPUT.checked) {
+          count += 1;
+        }
+      }
+
+      return count;
     } catch (exception) {
       alert(exception);
     }
