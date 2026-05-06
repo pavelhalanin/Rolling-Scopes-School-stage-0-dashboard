@@ -59,7 +59,8 @@ class Employee {
       <header>
         <h2>Employees</h2>
         <div>
-          <button class="btn btn-success" onclick="Employee.open()">Add employee</button>
+          <button class="btn btn-danger" onclick="${this.name}.clearAllFilter()" name="clearFilters" style="display: none;">Clear all filters</button>
+          <button class="btn btn-success" onclick="${this.name}.open()">Add employee</button>
           <button class="btn btn-success" onclick="SeedData.open()">Seed Data</button>
         </div>
       </header>
@@ -311,6 +312,56 @@ class Employee {
           }
         }
       }
+
+      let countFilters = 0;
+
+      for (let i = 0; i < INPUT_ARRAY.length; i++) {
+        if (INPUT_ARRAY[i].value !== "") {
+          countFilters += 1;
+        }
+      }
+
+      const CLEAR_FILTER_BUTTON = DIV.querySelector(
+        `button[name='clearFilters']`,
+      );
+      if (!CLEAR_FILTER_BUTTON) {
+        alert(`Узел не найден: ${this.id_content} button[name='clearFilters']`);
+        return;
+      }
+
+      CLEAR_FILTER_BUTTON.style.display = countFilters < 2 ? "none" : "";
+    } catch (exception) {
+      alert(exception);
+    }
+  }
+
+  static clearAllFilter() {
+    try {
+      console.log("clearFilter");
+      const DIV = document.getElementById(this.id_content);
+      if (!DIV) {
+        alert(`Узел не найден: ${this.id_content}`);
+        return;
+      }
+
+      const TABLE = DIV.querySelector("table");
+      if (!TABLE) {
+        alert(`Узел не найден: ${this.id_content} table`);
+        return;
+      }
+
+      const THEAD = TABLE.querySelector("thead");
+      if (!THEAD) {
+        alert(`Узел не найден: ${this.id_content} table thead`);
+        return;
+      }
+
+      const INPUT_ARRAY = THEAD.querySelectorAll("input");
+
+      INPUT_ARRAY.forEach((input) => {
+        input.value = "";
+      });
+      this.filter();
     } catch (exception) {
       alert(exception);
     }
